@@ -1,0 +1,9 @@
+
+<div class="login">
+    <h1>Login Page</h1>
+    <form v-on:submit.prevent="loginUser()">
+        <input type="text" placeholder="Username" v-model="loginDetails.login" required>
+        <input type="password" placeholder="Password" v-model="loginDetails.password" required>
+        <button type="submit" value="login" >LOGIN</button>
+    </form>
+</div>

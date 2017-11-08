@@ -1,0 +1,21 @@
+
+<div class="mur">
+  <h1>Mur</h1>
+
+
+  <div class="mur__container">
+
+    <div class="col-md-6" id="mur">
+      <span class="city-span" v-for="post in posts" >{{post.message}} : {{post.poster.nomInvocateur}}<br/></span>
+    </div>
+
+
+      <form v-on:submit.prevent="newPublication()">
+          <input type="text" v-model="murDetails.message">
+          <button type="submit" value="publication" >Publier</button>
+      </form>
+
+
+  </div>
+
+</div>

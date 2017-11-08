@@ -1,0 +1,36 @@
+
+<div class="suggestion">
+    <h1>Suggestion</h1>
+
+
+<div class="suggestion__container">
+
+  <div class="col-md-6" id="suggestion">
+    <!-- <span class="city-span" v-for="post in posts" >{{post.message}}{{post.poster.nomInvocateur}}<br/></span> -->
+  </div>
+
+
+  <div class="col-md-6" id="suggestion">
+    <span class="city-span" v-for="contact in listContact" >{{contact.nomInvocateur}} : {{contact.status}}<br/></span>
+  </div>
+
+
+  <form v-on:submit.prevent="newPublication()">
+    <input type="text" v-model="suggestionDetails.message">
+    <button type="submit" value="publication" >Publier</button>
+  </form>
+
+
+</div>
+<v-snackbar
+      :timeout="toast.timeout"
+      :color="toast.color"
+      :multi-line="toast.mode === 'multi-line'"
+      :vertical="toast.mode === 'vertical'"
+      v-model="toast.snackbar"
+    >
+      {{ toast.text }}
+      <v-btn dark flat @click.native="toast.snackbar = false">Close</v-btn>
+    </v-snackbar>
+
+</div>

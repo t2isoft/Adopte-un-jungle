@@ -1,0 +1,43 @@
+
+<div class="register" id="register">
+    <h1>Register Page</h1>
+    <form v-on:submit.prevent="registerUser()">
+        <input type="text" placeholder="Username" v-model="registerDetails.username" required>
+        <input type="text" placeholder="Email" v-model="registerDetails.email" required>
+        <input type="password" placeholder="Password" v-model="registerDetails.password" required>
+        Poste
+        <select v-model="registerDetails.role" required>
+          <option value="Top">Top</option>
+          <option value="Jungle">Jungle</option>
+          <option value="Mid">Mid</option>
+          <option value="Adc">Adc</option>
+          <option value="Support">Support</option>
+        </select>
+        <input type="text" placeholder="Nom Invocateur league of legend" v-model="registerDetails.nomInvocateur" required>
+        <button type="submit" value="register" >Register</button>
+    </form>
+
+    <v-snackbar
+          :timeout="toast.timeout"
+          :color="toast.color"
+          :multi-line="toast.mode === 'multi-line'"
+          :vertical="toast.mode === 'vertical'"
+          v-model="toast.snackbar"
+        >
+          {{ toast.text }}
+          <v-btn dark flat @click.native="toast.snackbar = false">Close</v-btn>
+        </v-snackbar>
+</div>
+
+
+  <!-- <v-btn color="primary" dark flat v-on:click="test">CLICK</v-btn>
+  <v-snackbar
+        :timeout="timeout"
+        :color="color"
+        :multi-line="mode === 'multi-line'"
+        :vertical="mode === 'vertical'"
+        v-model="snackbar"
+      >
+        {{ text }}
+        <v-btn dark flat @click.native="snackbar = false">Close</v-btn>
+      </v-snackbar> -->
