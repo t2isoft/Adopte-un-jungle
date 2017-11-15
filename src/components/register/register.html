@@ -1,6 +1,10 @@
 
+<div class="container">
+<div class="row clearfix">
+<div class="col-md-6 col-md-offset-3 column">
 <div class="register" id="register">
-    <h1>Register Page</h1>
+    </br></br></br>
+    <h2 style="color: #221194;">Register Page</h2>
     <form v-on:submit.prevent="registerUser()">
         <input type="text" placeholder="Username" v-model="registerDetails.username" required>
         <input type="text" placeholder="Email" v-model="registerDetails.email" required>
@@ -14,7 +18,7 @@
           <option value="Support">Support</option>
         </select>
         <input type="text" placeholder="Nom Invocateur league of legend" v-model="registerDetails.nomInvocateur" required>
-        <button type="submit" value="register" >Register</button>
+        <button type="submit" value="register" style="color: #221194;">Register</button>
     </form>
 
     <v-snackbar
@@ -28,16 +32,6 @@
           <v-btn dark flat @click.native="toast.snackbar = false">Close</v-btn>
         </v-snackbar>
 </div>
-
-
-  <!-- <v-btn color="primary" dark flat v-on:click="test">CLICK</v-btn>
-  <v-snackbar
-        :timeout="timeout"
-        :color="color"
-        :multi-line="mode === 'multi-line'"
-        :vertical="mode === 'vertical'"
-        v-model="snackbar"
-      >
-        {{ text }}
-        <v-btn dark flat @click.native="snackbar = false">Close</v-btn>
-      </v-snackbar> -->
+</div>
+</div>
+</div>

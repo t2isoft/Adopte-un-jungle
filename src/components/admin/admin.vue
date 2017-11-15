@@ -15,7 +15,7 @@ export default {
   data() {
     return {
       adminDetails : {
-        message : 'fsdfsd'
+        message : ''
       },
       el: '#admin',
       posts : null,
@@ -76,6 +76,7 @@ export default {
         const data = response.data;
         this.posts = data.posts;
         console.log(response);
+        this.admin();
       })
       .catch((err) => {
         console.error(err.stack || err);

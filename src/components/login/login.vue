@@ -4,6 +4,10 @@
 import loginService from './loginService.js';
 import axios from 'axios';
 import { APIENDPOINT , getHeader, token } from '../../app.config';
+import Vue from 'vue';
+import Vuetify from 'vuetify'
+Vue.use(Vuetify)
+
 export default {
     template:require('./login.html'),
     data() {
@@ -12,6 +16,14 @@ export default {
                 login : '',
                 password : ''
             },
+            toast : {
+              snackbar: false,
+              color: 'red',
+              mode: '',
+              timeout: 6000,
+              text:''
+            },
+            el: '#login',
         }
     },
     methods: {
@@ -19,8 +31,8 @@ export default {
              const authUser = {}
              var app = this;
             loginService.login(this.loginDetails)
-            .then(function(res) {
-                if(res.data.tRetour.codeRetour === "0000000000") {
+            .then((res) => {
+                if(res.data.codeRetour === "0000000000") {
                     authUser.data = res.data.userDto;
                     authUser.data.role_id = "ADMIN";
                     authUser.sessionid = res.headers.cookie;
@@ -44,7 +56,10 @@ export default {
                       app.$router.push('/resident');
                     }
                 }else {
-                      console.log("tata");
+                      console.log('toto');
+                      this.toast.text = res.data.messageRetour;
+                      this.toast.color='red';
+                      this.toast.snackbar=true;
                       app.$store.state.isLoggedIn = false;
                 }
             })

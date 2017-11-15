@@ -1,9 +1,29 @@
 
-<div class="login">
-    <h1>Login Page</h1>
-    <form v-on:submit.prevent="loginUser()">
-        <input type="text" placeholder="Username" v-model="loginDetails.login" required>
-        <input type="password" placeholder="Password" v-model="loginDetails.password" required>
-        <button type="submit" value="login" >LOGIN</button>
-    </form>
+<div class="container" >
+  <div class="row clearfix">
+    <div class="col-md-6 col-md-offset-3 column">
+      <div class="login" id="login">
+      </br></br></br>
+      <h2 class="form-signin-heading" style="color: #221194;">Login Page</h2>
+      </br></br></br>
+        <form v-on:submit.prevent="loginUser()" class="form-signin">
+            <input type="text" placeholder="Username" v-model="loginDetails.login" required>
+            <input type="password" placeholder="Password" v-model="loginDetails.password" required>
+            <button type="submit" value="login" style="color: #221194;">LOGIN</button>
+        </form>
+
+        <v-snackbar
+              :timeout="toast.timeout"
+              :color="toast.color"
+              :multi-line="toast.mode === 'multi-line'"
+              :vertical="toast.mode === 'vertical'"
+              v-model="toast.snackbar"
+            >
+              {{ toast.text }}
+              <v-btn dark flat @click.native="toast.snackbar = false">Close</v-btn>
+        </v-snackbar>
+
+    </div>
+    </div>
+    </div>
 </div>
