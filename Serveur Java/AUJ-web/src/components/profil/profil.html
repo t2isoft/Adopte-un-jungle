@@ -1,0 +1,19 @@
+
+<div class="profil">
+  <h1>ProfilPage</h1>
+      <form v-on:submit.prevent="profilUser()">
+          <input type="text" placeholder="Username" v-model="profilDetails.username" required>
+          <input type="text" placeholder="Email" v-model="profilDetails.email" required>
+          <input type="password" placeholder="Password" v-model="profilDetails.password" required>
+          Poste
+          <select v-model="profilDetails.role" required>
+            <option value="Top">Top</option>
+            <option value="Jungle">Jungle</option>
+            <option value="Mid">Mid</option>
+            <option value="Adc">Adc</option>
+            <option value="Support">Support</option>
+          </select>
+          <input type="text" placeholder="Nom Invocateur league of legend" v-model="profilDetails.nomInvocateur" required>
+          <button type="submit" value="profil" >Profil</button>
+      </form>
+  </div>

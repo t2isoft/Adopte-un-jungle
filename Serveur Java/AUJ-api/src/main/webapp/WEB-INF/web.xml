@@ -1,0 +1,153 @@
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+		 http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	version="3.1">
+
+	<display-name>Adopte Un Jungle WEB Application - v1.0.0</display-name>
+
+	<context-param>
+		<param-name>javax.faces.PROJECT_STAGE</param-name>
+		<param-value>Developpement</param-value>
+	</context-param>
+
+	<!-- SERVLET D AUTHENTIFICATION -->
+	<servlet>
+		<servlet-name>authentificationServlet</servlet-name>
+		<servlet-class>fr.stl.servlet.AuthentificationServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>authentificationServlet</servlet-name>
+		<url-pattern>/auth/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- SERVLET USER -->
+	<servlet>
+		<servlet-name>userServlet</servlet-name>
+		<servlet-class>fr.stl.servlet.UserServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>userServlet</servlet-name>
+		<url-pattern>/user/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- SERVLET TCHAT -->
+	<servlet>
+		<servlet-name>tchatServlet</servlet-name>
+		<servlet-class>fr.stl.servlet.TchatServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+		<async-supported>true</async-supported>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>tchatServlet</servlet-name>
+		<url-pattern>/tchat/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- SERVLET DE TEST -->
+	<servlet>
+		<servlet-name>testServlet</servlet-name>
+		<servlet-class>fr.stl.servlet.TestServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>testServlet</servlet-name>
+		<url-pattern>/test</url-pattern>
+	</servlet-mapping>
+
+	<!-- SERVLET DE POST -->
+	<servlet>
+		<servlet-name>postServlet</servlet-name>
+		<servlet-class>fr.stl.servlet.PostServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>postServlet</servlet-name>
+		<url-pattern>/post/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- SERVLET DE CONTACT -->
+	<servlet>
+		<servlet-name>contactServlet</servlet-name>
+		<servlet-class>fr.stl.servlet.ContactServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>contactServlet</servlet-name>
+		<url-pattern>/contact/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- SERVLET JERSEY -->
+	<servlet>
+		<servlet-name>Jersey Web Application</servlet-name>
+		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+		<!-- Register resources and providers under com.vogella.jersey.first package. -->
+		<init-param>
+			<param-name>jersey.config.server.provider.packages</param-name>
+			<param-value>fr.stl</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Jersey Web Application</servlet-name>
+		<url-pattern>/crunchify/*</url-pattern>
+	</servlet-mapping>
+
+	<filter>
+		<filter-name>JWTTokenNeededFilter</filter-name>
+		<filter-class>fr.stl.filter.JWTTokenNeededFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>JWTTokenNeededFilter</filter-name>
+		<url-pattern>/user/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>JWTTokenNeededFilter</filter-name>
+		<url-pattern>/auth/logout</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>JWTTokenNeededFilter</filter-name>
+		<url-pattern>/auth/login</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>JWTTokenNeededFilter</filter-name>
+		<url-pattern>/contact/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>CORSFilter</filter-name>
+		<filter-class>fr.stl.filter.CORSFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>CORSFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+
+	<!-- <error-page> -->
+	<!-- <error-code>500</error-code> -->
+	<!-- <location>/error.html</location> -->
+	<!-- </error-page> -->
+	<!-- <error-page> -->
+	<!-- <error-code>404</error-code> -->
+	<!-- <location>/error.html</location> -->
+	<!-- </error-page> -->
+	<!-- <error-page> -->
+	<!-- <exception-type>java.lang.Exception</exception-type> -->
+	<!-- <location>/error.html</location> -->
+	<!-- </error-page> -->
+
+</web-app>

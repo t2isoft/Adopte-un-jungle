@@ -1,0 +1,2 @@
+ALTER TABLE `adopteunjungle`.`AUJ_USER` 
+ADD COLUMN `AUJ_USER_mail` VARCHAR(75) NOT NULL AFTER `AUJ_USER_password`;

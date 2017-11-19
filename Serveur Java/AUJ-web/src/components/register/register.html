@@ -1,0 +1,19 @@
+
+<div class="register">
+    <h1>Register Page</h1>
+    <form v-on:submit.prevent="registerUser()">
+        <input type="text" placeholder="Username" v-model="registerDetails.username" required>
+        <input type="text" placeholder="Email" v-model="registerDetails.email" required>
+        <input type="password" placeholder="Password" v-model="registerDetails.password" required>
+        Poste
+        <select v-model="registerDetails.role" required>
+          <option value="Top">Top</option>
+          <option value="Jungle">Jungle</option>
+          <option value="Mid">Mid</option>
+          <option value="Adc">Adc</option>
+          <option value="Support">Support</option>
+        </select>
+        <input type="text" placeholder="Nom Invocateur league of legend" v-model="registerDetails.nomInvocateur" required>
+        <button type="submit" value="register" >Register</button>
+    </form>
+</div>

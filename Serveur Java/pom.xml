@@ -1,0 +1,38 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>fr.stl</groupId>
+	<version>1.0.0</version>
+	<packaging>pom</packaging>
+	<name>AdopteUnJungle</name>
+	<description>Application Web de Recherche d'Equipe</description>
+	<artifactId>adopteunjungle</artifactId>
+
+	<!-- ================================================================================ -->
+	<!-- PROPERTIES -->
+	<!-- ================================================================================ -->
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
+
+	<prerequisites>
+		<maven>3.0.5</maven>
+	</prerequisites>
+
+	<!-- ================================================================================ -->
+	<!-- MODULES -->
+	<!-- ================================================================================ -->
+
+	<modules>
+		<!-- Métier -->
+		<module>AUJ-core</module>
+
+		<!-- API -->
+		<module>AUJ-api</module>
+
+		<!-- Web -->
+		<module>Riot-Client-API</module>
+	</modules>
+
+</project>
