@@ -54,7 +54,7 @@ public class JWTTokenNeededFilter implements Filter {
         try {
             // Vérification de la session
             String tokenFromSession = (String) session.getAttribute("Authorization");
-            System.out.println("Token connected: "+tokenFromSession);
+            System.out.println("Token connected: " + tokenFromSession);
             // Get the HTTP Authorization header from the request
             String authorizationHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
             if (authorizationHeader == "" || authorizationHeader.isEmpty()) {
@@ -72,12 +72,15 @@ public class JWTTokenNeededFilter implements Filter {
                 throw new Exception();
             }
             logger.info("#### valid session");
-            
+
             request.setAttribute(Constantes.USER_AUTH, AbstractServlet.parseTokenToUser(token));
             chain.doFilter(request, response);
         } catch (Exception e) {
             if (request.getRequestURI().equalsIgnoreCase(Constantes.PATH_AUTH + "/login")) {
                 chain.doFilter(request, response);
+            } else if (request.getMethod().equalsIgnoreCase("OPTIONS")) {
+                response.setStatus(HttpServletResponse.SC_ACCEPTED);
+                return;
             } else {
                 logger.fatal("#### invalid token");
                 response.setStatus(Response.Status.UNAUTHORIZED.getStatusCode());

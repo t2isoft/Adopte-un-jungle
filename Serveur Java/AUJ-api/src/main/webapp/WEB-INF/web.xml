@@ -92,6 +92,18 @@
 		<servlet-name>Jersey Web Application</servlet-name>
 		<url-pattern>/crunchify/*</url-pattern>
 	</servlet-mapping>
+	
+	<filter>
+		<filter-name>CORSFilter</filter-name>
+		<filter-class>fr.stl.filter.CORSFilter</filter-class>
+		<async-supported>true</async-supported>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>CORSFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
 
 	<filter>
 		<filter-name>JWTTokenNeededFilter</filter-name>
@@ -121,15 +133,10 @@
 		<url-pattern>/contact/*</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 	</filter-mapping>
-
-	<filter>
-		<filter-name>CORSFilter</filter-name>
-		<filter-class>fr.stl.filter.CORSFilter</filter-class>
-	</filter>
-
+	
 	<filter-mapping>
-		<filter-name>CORSFilter</filter-name>
-		<url-pattern>/*</url-pattern>
+		<filter-name>JWTTokenNeededFilter</filter-name>
+		<url-pattern>/post/*</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 	</filter-mapping>
 

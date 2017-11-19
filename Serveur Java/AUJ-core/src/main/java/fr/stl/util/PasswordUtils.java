@@ -16,7 +16,7 @@ public class PasswordUtils {
      * @return mot de passe crypté
      * @throws TechniqueException erreur technique
      */
-    public static String cryptSha1(String plainTextPassword) throws TechniqueException {
+    public static String cryptSha512(String plainTextPassword) throws TechniqueException {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
             md.update(plainTextPassword.getBytes("UTF-8"));
@@ -35,6 +35,6 @@ public class PasswordUtils {
      * @throws TechniqueException erreur technique
      */
     public static boolean decodeSha1(String password, String inputpassword) throws TechniqueException {
-        return cryptSha1(inputpassword).equals(password) ? true : false;
+        return cryptSha512(inputpassword).equals(password) ? true : false;
     }
 }

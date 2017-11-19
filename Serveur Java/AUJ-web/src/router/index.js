@@ -2,13 +2,8 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Hello from '@/components/Hello';
 import login from '../components/login/login.vue';
-import register from '../components/register/register.vue';
 import admin from '../components/admin/admin.vue';
 import resident from '../components/resident/resident.vue';
-import mur from '../components/mur/mur.vue';
-import contact from '../components/contact/contact.vue';
-import chat from '../components/chat/chat.vue';
-import profil from '../components/profil/profil.vue';
 Vue.use(VueRouter)
 
 
@@ -22,35 +17,6 @@ const routes = [
       name:'login',
       path:'/login',
       component:login
-    },
-    {
-      name:'mur',
-      path:'/mur',
-      component:mur,
-       meta: { requiresAuth: true , adminAuth:true , residentAuth : false}
-    },
-    {
-      name:'contact',
-      path:'/contact',
-      component:contact,
-       meta: { requiresAuth: true , adminAuth:true , residentAuth : false}
-    },
-    {
-      name:'chat',
-      path:'/chat',
-      component:chat,
-       meta: { requiresAuth: true , adminAuth:true , residentAuth : false}
-    },
-    {
-      name:'profil',
-      path:'/profil',
-      component:profil,
-       meta: { requiresAuth: true , adminAuth:true , residentAuth : false}
-    },
-    {
-      name:'register',
-      path:'/register',
-      component:register
     },
      {
       name:'admin',

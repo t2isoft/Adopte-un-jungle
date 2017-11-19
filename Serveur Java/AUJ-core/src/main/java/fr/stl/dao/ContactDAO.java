@@ -29,4 +29,13 @@ public interface ContactDAO extends GenericDAO<ContactEntity, Long> {
      */
     List<ContactEntity> findContactByUser(UserEntity userEntity) throws TechniqueException;
 
+    /**
+     * Récupère un contact pour un couple d'utilisateur
+     * @param userEntity1 un userEntity
+     * @param userEntity2 un userEntity
+     * @return le contact composé des deux users
+     * @throws TechniqueException 
+     */
+    List<ContactEntity> findContactByCoupleOfUser(UserEntity userEntity1, UserEntity userEntity2) throws TechniqueException;
+
 }

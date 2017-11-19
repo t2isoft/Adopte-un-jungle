@@ -28,12 +28,14 @@ public class ContactDAOImpl extends GenericHibernateDAO<ContactEntity, Long> imp
         try {
             tx = getSession().beginTransaction();
             Criteria crit = getSession().createCriteria(getPersistentClass());
-            crit.add(Restrictions.eq("utilisateur1", user1)).add(Restrictions.eq("utilisateur2", user2));
+            crit.add(Restrictions.eq("me", user1)).add(Restrictions.eq("myContact", user2));
             contact = (ContactEntity) crit.uniqueResult();
             tx.commit();
         } catch (Exception e) {
             try {
-                tx.rollback();
+                if (tx.isActive()) {
+                    tx.rollback();
+                }
             } catch (Exception e1) {
                 logger.error("Couldn’t roll back transaction", e1);
             }
@@ -50,13 +52,40 @@ public class ContactDAOImpl extends GenericHibernateDAO<ContactEntity, Long> imp
         try {
             tx = getSession().beginTransaction();
             Criteria crit = getSession().createCriteria(getPersistentClass());
-            crit.add(Restrictions.or(Restrictions.eq("utilisateur1", userEntity),
-                            Restrictions.eq("utilisateur2", userEntity)));
+            crit.add(Restrictions.or(Restrictions.eq("me", userEntity),
+                            Restrictions.eq("myContact", userEntity)));
             listContact = crit.list();
             tx.commit();
         } catch (Exception e) {
             try {
-                tx.rollback();
+                if (tx.isActive()) {
+                    tx.rollback();
+                }
+            } catch (Exception e1) {
+                logger.error("Couldn’t roll back transaction", e1);
+            }
+            throw new TechniqueException(e);
+        }
+        return listContact;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<ContactEntity> findContactByCoupleOfUser(UserEntity userEntity1, UserEntity userEntity2) throws TechniqueException {
+        Transaction tx = null;
+        List<ContactEntity> listContact = null;
+        try {
+            tx = getSession().beginTransaction();
+            Criteria crit = getSession().createCriteria(getPersistentClass());
+            crit.add(Restrictions.or(Restrictions.and(Restrictions.eq("me", userEntity1),Restrictions.eq("myContact", userEntity2),
+                            Restrictions.and(Restrictions.eq("me", userEntity2),Restrictions.eq("myContact", userEntity2)))));
+            listContact = crit.list();
+            tx.commit();
+        } catch (Exception e) {
+            try {
+                if (tx.isActive()) {
+                    tx.rollback();
+                }
             } catch (Exception e1) {
                 logger.error("Couldn’t roll back transaction", e1);
             }

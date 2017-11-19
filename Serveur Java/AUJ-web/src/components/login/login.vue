@@ -23,18 +23,16 @@ export default {
                     authUser.data.role_id = "ADMIN";
                     authUser.sessionid = res.headers.cookie;
                     authUser.token = res.headers.authorization;
-                    const cookie = document.cookie;
                     app.$store.state.isLoggedIn = true
                     window.localStorage.setItem('lbUser',JSON.stringify(authUser));
                     if(authUser.data.role_id === 'ADMIN') {
-                        console.log("VgfgdfgdfgdfgdfgdfgdfFF");
+                        console.log("VTFF");
                      app.$router.push('/admin');
                     }else {
                         console.log("toto");
                       app.$router.push('/resident');
                     }
                 }else {
-                      console.log("tata");
                       app.$store.state.isLoggedIn = false;
                 }
             })

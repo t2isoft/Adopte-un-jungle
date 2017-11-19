@@ -7,9 +7,9 @@
 export default {
     data() {
         return {
-        message:''
+        message:'Footer'
         }
     }
 }
-
+ 
 </script>

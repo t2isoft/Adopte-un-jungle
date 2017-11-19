@@ -23,9 +23,6 @@ public class RiotAccountEntity {
     /** Le rôle */
     private String role;
 
-    /** Le serveur */
-    private String serveur;
-
     /**
      * @return the id
      */
@@ -71,21 +68,6 @@ public class RiotAccountEntity {
      */
     public void setRole(String role) {
         this.role = role;
-    }
-
-    /**
-     * @return the serveur
-     */
-    @Column(name = "SERVER", length = 255, nullable = false)
-    public String getServeur() {
-        return serveur;
-    }
-
-    /**
-     * @param serveur the serveur to set
-     */
-    public void setServeur(String serveur) {
-        this.serveur = serveur;
     }
 
 }

@@ -13,7 +13,7 @@ export default {
                 resolve(res);
             })
             .catch(function (err) {
-                reject(err)
+                reject(err.response.data)
             })
         });
 

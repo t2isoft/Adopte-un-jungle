@@ -16,13 +16,14 @@ import org.apache.log4j.Logger;
 
 import com.google.gson.Gson;
 
+import fr.stl.Environment;
 import fr.stl.dto.tchat.TchatDataDTO;
 
 /**
  * Servlet de tchat
  */
 public class TchatServlet extends HttpServlet {
-    
+
     /** Le logger */
     private final Logger LOG = Logger.getLogger(getClass());
 
@@ -42,9 +43,10 @@ public class TchatServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (req.isAsyncSupported()) {
-            AsyncContext context = req.startAsync();
-            context.setTimeout(1 * 60);
-            contexts.add(context);
+             req.setAttribute("org.apache.catalina.ASYNC_SUPPORTED", true);
+             AsyncContext context = req.startAsync(req, resp);
+             context.setTimeout(10 * 60 * 1000);
+             contexts.add(context);
         } else {
             log("Les requêtes asynchrones ne sont pas supportées, dommage!");
         }
@@ -69,16 +71,17 @@ public class TchatServlet extends HttpServlet {
             context.complete();
         }
     }
-    
+
     @Override
     public void destroy() {
         LOG.info("Servlet " + this.getServletName() + " has stopped");
         super.destroy();
     }
-    
+
     @Override
     public void init() throws ServletException {
         LOG.info("Servlet " + this.getServletName() + " has started");
+        Environment.initServlet(getServletContext());
         super.init();
     }
 

@@ -13,6 +13,14 @@
 		<!-- org.hibernate.HibernateException: No CurrentSessionContext configured! -->
 		<property name="hibernate.current_session_context_class">thread</property>
 
+		<property name="hibernate.c3p0.min_size">7</property>
+		<property name="hibernate.c3p0.max_size">53</property>
+		<property name="hibernate.c3p0.timeout">300</property>
+		<property name="hibernate.c3p0.max_statements">50</property>
+		<property name="hibernate.c3p0.idle_test_period">3000</property>
+		<property name="hibernate.c3p0.validate">true</property>
+		<property name="hibernate.connection.provider_class">org.hibernate.service.jdbc.connections.internal.C3P0ConnectionProvider</property>
+
 		<!-- Mapping with model class containing annotations -->
 		<mapping class="fr.stl.entity.UserEntity" />
 		<mapping class="fr.stl.entity.PostEntity" />

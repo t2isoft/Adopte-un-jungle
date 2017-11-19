@@ -3,6 +3,7 @@ package fr.stl.dao;
 import org.hibernate.Session;
 
 import fr.stl.dao.impl.ContactDAOImpl;
+import fr.stl.dao.impl.PostDAOImpl;
 import fr.stl.dao.impl.RiotAccountDAOImpl;
 import fr.stl.dao.impl.UserDAOImpl;
 import fr.stl.generics.AbstractDAOFactory;
@@ -62,6 +63,11 @@ public class DAOFactory extends AbstractDAOFactory {
     @Override
     public ContactDAO getContactDAO() {
         return (ContactDAO)instantiateDAO(ContactDAOImpl.class);
+    }
+
+    @Override
+    public PostDAO getPostDAO() {
+        return (PostDAO)instantiateDAO(PostDAOImpl.class);
     }
  
 }

@@ -22,14 +22,8 @@ public class AccountDTO implements Serializable {
     /** Le password */
     private String password;
 
-    /** Rank */
-    private String rank;
-
     /** Rôle */
     private String role;
-
-    /** Serveur */
-    private String server;
 
     /**
      * @return the email
@@ -88,20 +82,6 @@ public class AccountDTO implements Serializable {
     }
 
     /**
-     * @return the rank
-     */
-    public String getRank() {
-        return rank;
-    }
-
-    /**
-     * @param rank the rank to set
-     */
-    public void setRank(String rank) {
-        this.rank = rank;
-    }
-
-    /**
      * @return the role
      */
     public String getRole() {
@@ -113,20 +93,6 @@ public class AccountDTO implements Serializable {
      */
     public void setRole(String role) {
         this.role = role;
-    }
-
-    /**
-     * @return the server
-     */
-    public String getServer() {
-        return server;
-    }
-
-    /**
-     * @param server the server to set
-     */
-    public void setServer(String server) {
-        this.server = server;
     }
 
 }

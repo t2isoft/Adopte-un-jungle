@@ -5,6 +5,7 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
+import fr.stl.AbstractTest;
 import fr.stl.entity.ContactEntity;
 import fr.stl.entity.UserEntity;
 import fr.stl.exceptions.FonctionnelleException;
@@ -15,7 +16,7 @@ import fr.stl.manager.UserManager;
 /**
  * Classe de test de la DAO Contact
  */
-public class ContactDAOTest {
+public class ContactDAOTest extends AbstractTest {
     
     /** Manager de Contact */
     ContactManager contactManager = new ContactManager();
@@ -31,17 +32,17 @@ public class ContactDAOTest {
     @Test
     public void testPersisteNominal() throws TechniqueException, FonctionnelleException {
         // Paramètres d'entrée
-        UserEntity utilisateur1 = userManager.findById(2L);
-        UserEntity utilisateur2 = userManager.findById(3L);
+        UserEntity me = userManager.findById(2L);
+        UserEntity myContact = userManager.findById(3L);
         
-        if (utilisateur1 == null || utilisateur2 == null) {
+        if (me == null || myContact == null) {
             Assert.fail("Les utilisateurs n'ont pas été récupéré.");
         }
         
         // Paramètres d'entrées
         ContactEntity contactEntity = new ContactEntity();
-        contactEntity.setUtilisateur1(utilisateur1);
-        contactEntity.setUtilisateur2(utilisateur2);
+        contactEntity.setMe(me);
+        contactEntity.setMyContact(myContact);
         contactEntity.setStatus(0);
         
         // Appelle de la méthode à tester
@@ -60,17 +61,17 @@ public class ContactDAOTest {
     @Test(expected=FonctionnelleException.class)
     public void testPersisteContactAlreadyDid() throws TechniqueException, FonctionnelleException {
         // Paramètres d'entrée
-        UserEntity utilisateur1 = userManager.findById(4L);
-        UserEntity utilisateur2 = userManager.findById(5L);
+        UserEntity me = userManager.findById(4L);
+        UserEntity myContact = userManager.findById(5L);
         
-        if (utilisateur1 == null || utilisateur2 == null) {
+        if (me == null || myContact == null) {
             Assert.fail("Les utilisateurs n'ont pas été récupéré.");
         }
         
         // Paramètres d'entrées
         ContactEntity contactEntity = new ContactEntity();
-        contactEntity.setUtilisateur1(utilisateur1);
-        contactEntity.setUtilisateur2(utilisateur2);
+        contactEntity.setMe(me);
+        contactEntity.setMyContact(myContact);
         contactEntity.setStatus(0);
         
         // Appelle de la méthode à tester
@@ -107,7 +108,7 @@ public class ContactDAOTest {
         
         // Assertions
         Assert.assertNotNull(listContact);
-        Assert.assertEquals(3, listContact.size());
+        Assert.assertEquals(4, listContact.size());
     }
     
 }

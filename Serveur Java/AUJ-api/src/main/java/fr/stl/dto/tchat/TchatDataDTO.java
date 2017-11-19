@@ -6,33 +6,33 @@ package fr.stl.dto.tchat;
 public class TchatDataDTO {
 
     /** Le nom de l'émetteur */
-    private String nickName;
+    private String nickname;
 
     /** Le message */
     private String message;
     
     /**
      * Constructor
-     * @param nickName le nom de l'émetteur
+     * @param nickname le nom de l'émetteur
      * @param message le message
      */
-    public TchatDataDTO(String nickName, String message) {
-        this.nickName = nickName;
+    public TchatDataDTO(String nickname, String message) {
+        this.nickname = nickname;
         this.message = message;
     }
 
     /**
-     * @return the nickName
+     * @return the nickname
      */
-    public String getNickName() {
-        return nickName;
+    public String getNickname() {
+        return nickname;
     }
 
     /**
-     * @param nickName the nickName to set
+     * @param nickname the nickname to set
      */
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     /**

@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 
 import fr.stl.AbstractServlet;
 import fr.stl.Constantes;
+import fr.stl.Environment;
 import fr.stl.dto.UserDTO;
 import fr.stl.dto.login.RequestLoginDTO;
 import fr.stl.dto.login.ResponseLoginDTO;
@@ -68,7 +69,7 @@ public class AuthentificationServlet extends HttpServlet {
             // La réponse
             ResponseLoginDTO response = new ResponseLoginDTO();
             response.settRetour(tRetour);
-            AbstractServlet.sendAsJson(resp, tRetour);
+            AbstractServlet.sendAsJson(resp, response);
         } catch (TechniqueException e) {
             LOG.error(e);
             // Le retour
@@ -79,7 +80,7 @@ public class AuthentificationServlet extends HttpServlet {
             // La réponse
             ResponseLoginDTO response = new ResponseLoginDTO();
             response.settRetour(tRetour);
-            AbstractServlet.sendAsJson(resp, tRetour);
+            AbstractServlet.sendAsJson(resp, response);
         } catch (Exception e) {
             LOG.error(e);
             // Le retour
@@ -90,7 +91,7 @@ public class AuthentificationServlet extends HttpServlet {
 
             // La réponse
             response.settRetour(tRetour);
-            AbstractServlet.sendAsJson(resp, tRetour);
+            AbstractServlet.sendAsJson(resp, response);
             resp.setStatus(500);
         }
     }
@@ -118,7 +119,7 @@ public class AuthentificationServlet extends HttpServlet {
 
             // La réponse
             response.settRetour(tRetour);
-            AbstractServlet.sendAsJson(resp, tRetour);
+            AbstractServlet.sendAsJson(resp, response);
             resp.setStatus(500);
         } catch (Exception e) {
             LOG.error(e);
@@ -130,7 +131,7 @@ public class AuthentificationServlet extends HttpServlet {
 
             // La réponse
             response.settRetour(tRetour);
-            AbstractServlet.sendAsJson(resp, tRetour);
+            AbstractServlet.sendAsJson(resp, response);
             resp.setStatus(500);
         }
     }
@@ -184,20 +185,13 @@ public class AuthentificationServlet extends HttpServlet {
         if (StringUtils.isBlank(account.getNomInvocateur())) {
             throw new FonctionnelleException("Erreur, le nom d'invocateur est incorrecte.");
         }
-        if (StringUtils.isBlank(account.getRank())) {
-            throw new FonctionnelleException("Erreur, votre rang est manquant.");
-        }
         if (StringUtils.isBlank(account.getRole())) {
             throw new FonctionnelleException("Erreur, votre rôle est manquant.");
-        }
-        if (StringUtils.isBlank(account.getServer())) {
-            throw new FonctionnelleException("Erreur, votre nom de serveur est manquant.");
         }
 
         // Création de l'utilisateur
         AUJServiceFunctionnalFactory.getInstance().getUserService().creerCompteUtilisateur(account.getEmail(),
-                        account.getPassword(), account.getUsername(), account.getNomInvocateur(),
-                        account.getRole(), account.getServer());
+                        account.getPassword(), account.getUsername(), account.getNomInvocateur(), account.getRole());
 
         // Le retour
         TRetour tRetour = new TRetour();
@@ -281,6 +275,7 @@ public class AuthentificationServlet extends HttpServlet {
         // Déconnexion
         HttpSession session = req.getSession();
         session.removeAttribute("Authorization");
+        session.invalidate();
         req.removeAttribute(Constantes.USER_AUTH);
         
         LOG.info("Déconnexion de l'utilisateur " + userAuthenticated.getLogin());
@@ -305,6 +300,7 @@ public class AuthentificationServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         LOG.info("Servlet " + this.getServletName() + " has started");
+        Environment.initServlet(getServletContext());
         super.init();
     }
 

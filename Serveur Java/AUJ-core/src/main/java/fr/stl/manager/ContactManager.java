@@ -54,8 +54,8 @@ public class ContactManager {
      * @throws TechniqueException erreur technique
      */
     public ContactEntity findCoupleOfContact(ContactEntity contactEntity) throws TechniqueException {
-        UserEntity user1 = contactEntity.getUtilisateur1();
-        UserEntity user2 = contactEntity.getUtilisateur2();
+        UserEntity user1 = contactEntity.getMe();
+        UserEntity user2 = contactEntity.getMyContact();
         return DAOFactory.getInstance().getContactDAO().findCoupleOfContact(user1, user2);
     }
 
@@ -67,6 +67,17 @@ public class ContactManager {
      */
     public List<ContactEntity> findContactByUser(UserEntity userEntity) throws TechniqueException {
         return DAOFactory.getInstance().getContactDAO().findContactByUser(userEntity);
+    }
+    
+    /**
+     * Récupère la liste de contact via deux utilisateur
+     * @param userEntity1 le premier
+     * @param userEntity2 le deuxième
+     * @return une liste de contact
+     * @throws TechniqueException erreur technique
+     */
+    public List<ContactEntity> findContactByCoupleOfUser(UserEntity userEntity1, UserEntity userEntity2) throws TechniqueException {
+        return DAOFactory.getInstance().getContactDAO().findContactByCoupleOfUser(userEntity1,userEntity2);
     }
 
 }

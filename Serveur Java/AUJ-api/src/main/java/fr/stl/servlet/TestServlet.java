@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
+import fr.stl.Environment;
+
 /**
  * Servlet de test
  */
@@ -34,6 +36,7 @@ public class TestServlet extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 	    LOG.info("Servlet " + this.getServletName() + " has started");
+	    Environment.initServlet(getServletContext());
 		super.init();
 	}
 

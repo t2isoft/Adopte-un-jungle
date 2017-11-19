@@ -5,6 +5,12 @@ package fr.stl.dto;
  */
 public class LeaguePositionDTO {
 
+    /** Nom de la league */
+    private String queueType;
+    
+    /** BRONZE, SILVER, GOLD, PLATINIUM, DIAMOND, MASTER, CHALLENGER */
+    private String tier;
+
     /** Le rang */
     private String rank;
 
@@ -23,7 +29,7 @@ public class LeaguePositionDTO {
     /** Nombres de défaite */
     private int losses;
 
-    /**  */
+    /** Premier sang */
     private boolean freshBlood;
 
     /** Nom d'équipe ou joueur (1v1) */
@@ -37,6 +43,36 @@ public class LeaguePositionDTO {
 
     /** Point de league */
     private int leaguePoints;
+
+    /**
+     * @return the queueType
+     */
+    public String getQueueType() {
+        return queueType;
+    }
+
+    /**
+     * @param queueType the queueType to set
+     */
+    public void setQueueType(String queueType) {
+        this.queueType = queueType;
+    }
+
+    
+    /**
+     * @return the tier
+     */
+    public String getTier() {
+        return tier;
+    }
+
+    
+    /**
+     * @param tier the tier to set
+     */
+    public void setTier(String tier) {
+        this.tier = tier;
+    }
 
     /**
      * @return the rank

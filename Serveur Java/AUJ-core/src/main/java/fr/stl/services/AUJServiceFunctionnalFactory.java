@@ -1,6 +1,7 @@
 package fr.stl.services;
 
 import fr.stl.services.impl.ContactServiceImpl;
+import fr.stl.services.impl.PostServiceImpl;
 import fr.stl.services.impl.UserServiceImpl;
 
 /**
@@ -41,6 +42,14 @@ public class AUJServiceFunctionnalFactory {
      */
     public ContactService getContactService() {
         return new ContactServiceImpl();
+    }
+
+    /**
+     * Méthode qui créee et renvoie un objet de type PostService.
+     * @return un service exposant les méthodes de haut niveau
+     */
+    public PostService getPostService() {
+        return new PostServiceImpl();
     }
     
 }

@@ -1,6 +1,18 @@
 package fr.stl.entity;
 
-import javax.persistence.*;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * La classe entity User
@@ -26,6 +38,12 @@ public class UserEntity {
 
     /** Les informations additionnelles */
     private String additionalInformation;
+
+    /** Les posts de l'utilisateur */
+    private Set<PostEntity> posts;
+
+    /** Les contacts de l'utilisateur */
+    private Set<ContactEntity> contacts;
 
     /**
      * @return the id
@@ -118,6 +136,38 @@ public class UserEntity {
      */
     public void setAdditionalInformation(String additionalInformation) {
         this.additionalInformation = additionalInformation;
+    }
+
+    /**
+     * Get the user posts
+     * @return list of post entity
+     */
+    @OneToMany(targetEntity = PostEntity.class, mappedBy = "poster", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    public Set<PostEntity> getPosts() {
+        return posts;
+    }
+
+    /**
+     * @param posts the contact list to set
+     */
+    public void setPosts(Set<PostEntity> posts) {
+        this.posts = posts;
+    }
+
+    /**
+     * Get the user posts
+     * @return list of contact entity
+     */
+    @OneToMany(targetEntity = ContactEntity.class, mappedBy = "myContact", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    public Set<ContactEntity> getContacts() {
+        return contacts;
+    }
+
+    /**
+     * @param contacts the contact list to set
+     */
+    public void setContacts(Set<ContactEntity> contacts) {
+        this.contacts = contacts;
     }
 
 }

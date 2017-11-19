@@ -20,10 +20,10 @@ public class ContactEntity {
     private Long id;
 
     /** Utilisateur 1 */
-    private UserEntity utilisateur1;
+    private UserEntity me;
 
     /** Utilisateur 2 */
-    private UserEntity utilisateur2;
+    private UserEntity myContact;
 
     /** Le status du contact */
     private int status;
@@ -46,35 +46,35 @@ public class ContactEntity {
     }
 
     /**
-     * @return the utilisateur1
+     * @return me
      */
     @ManyToOne
     @JoinColumn(name = "auj_user1_ID")
-    public UserEntity getUtilisateur1() {
-        return utilisateur1;
+    public UserEntity getMe() {
+        return me;
     }
 
     /**
-     * @param utilisateur1 the utilisateur1 to set
+     * @param me me to set
      */
-    public void setUtilisateur1(UserEntity utilisateur1) {
-        this.utilisateur1 = utilisateur1;
+    public void setMe(UserEntity me) {
+        this.me = me;
     }
 
     /**
-     * @return the utilisateur2
+     * @return the myContact
      */
     @ManyToOne
     @JoinColumn(name = "auj_user2_ID")
-    public UserEntity getUtilisateur2() {
-        return utilisateur2;
+    public UserEntity getMyContact() {
+        return myContact;
     }
 
     /**
-     * @param utilisateur2 the utilisateur2 to set
+     * @param myContact myContact to set
      */
-    public void setUtilisateur2(UserEntity utilisateur2) {
-        this.utilisateur2 = utilisateur2;
+    public void setMyContact(UserEntity myContact) {
+        this.myContact = myContact;
     }
 
     /**

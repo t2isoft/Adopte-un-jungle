@@ -2,6 +2,7 @@ package fr.stl.generics;
 
 import fr.stl.dao.ContactDAO;
 import fr.stl.dao.DAOFactory;
+import fr.stl.dao.PostDAO;
 import fr.stl.dao.RiotAccountDAO;
 import fr.stl.dao.UserDAO;
 
@@ -53,4 +54,10 @@ public abstract class AbstractDAOFactory {
      * @return un ContactDAO
      */
     public abstract ContactDAO getContactDAO();
+
+    /**
+     * Retourne un objet de haut niveau de type DAO
+     * @return un PostDAO
+     */
+    public abstract PostDAO getPostDAO();
 }
